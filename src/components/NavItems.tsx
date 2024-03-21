@@ -12,7 +12,7 @@ const NavItems = () => {
 
    
   return (
-    <div className="flex h-full">
+    <div className="flex h-full gap-4">
        {
         PRODUCT_CATAGORIES.map((category , i) =>{
              const handleOpen = () => {
@@ -25,7 +25,7 @@ const NavItems = () => {
 
              const isOpen = i === activeIndex
              return(
-              <NavItem key={category.value} catagory={category} isOpen={isOpen} isAnyOpen={isAnyOpen} handleOpen={handleOpen} />
+              <NavItem key={category.value} catagory={category} isOpen={isOpen} isAnyOpen={isAnyOpen} handleOpen={handleOpen}  />
              )
         }
         )

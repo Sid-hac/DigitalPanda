@@ -21,8 +21,8 @@ const NavItem = ({ catagory, isAnyOpen, isOpen, handleOpen }: navItemProps) => {
     return (
 
         <div className="flex">
-            <div className="flex items-center relative gap-2">
-                <Button className="gap-1.5" variant={isOpen ? "secondary" : "ghost"} onClick = {handleOpen}>
+            <div className="flex items-center relative">
+                <Button className="gap-2" variant={isOpen ? "secondary" : "ghost"} onClick = {handleOpen}>
                     {catagory.lable}
                 <ChevronDown className={cn("h-4 w-4 transition-all text-muted-foreground" , {
                     "-rotate-180": isOpen,
