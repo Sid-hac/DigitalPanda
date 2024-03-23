@@ -22,3 +22,4 @@ export function formatPrice(
     maximumFractionDigits: 2
   }).format(numericPrice) 
 }
+
