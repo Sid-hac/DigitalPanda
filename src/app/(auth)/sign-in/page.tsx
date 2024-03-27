@@ -6,8 +6,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
-    ;
+import Link from 'next/link';
 
 import { z, ZodError } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -43,7 +42,7 @@ const Page = () => {
         },
         onSuccess: () => {
             toast.success("Account created successfully")
-            router.push('/sign-in')
+            router.push('/login')
         }
     })
 
@@ -57,8 +56,8 @@ const Page = () => {
     if (isLoading) {
         return (
             <div className='flex flex-col items-center gap-2'>
-                <Loader2 className='animate-spin h-8 w-8 text-zinc-400' />
-                <p className='text-sm text-muted-foreground'>This won&apos;t take too long</p>
+                <Loader2 className='animate-spin h-12 w-12 text-zinc-400' />
+                <p className='text-md text-muted-foreground'>This won&apos;t take too long</p>
             </div>
         )
     }
@@ -69,14 +68,14 @@ const Page = () => {
                 <div className="w-full flex flex-col justify-center items-center sm:w-[350px] space-y-6 ">
                     <div className="flex flex-col text-center justify-center items-center">
                         <icons.logo className="h-12 w-12" />
-                        <h1 className="text-2xl font-bold">Create an account</h1>
+                        <h1 className="text-2xl font-bold">Sign-in to your account</h1>
                         <p className='text-sm '>
-                            Already have an account?
+                            don&apos;t have an acoount?
                             <span className='text-sm font-semibold text-muted-foreground '>
-                                <Link href="/sign-in" className={buttonVariants({
+                                <Link href="/sign-up" className={buttonVariants({
                                     variant: 'link',
                                 })}>
-                                    Sign-In
+                                    Sign-up
 
                                 </Link>
                             </span>
@@ -108,17 +107,15 @@ const Page = () => {
                                 />
                                 {errors?.password && <p className='text-red-500 text-xs'>{errors.password.message}</p>}
                             </div>
-                            <Button>Sign up</Button>
+                            <Button>Sign in</Button>
                         </div>
                     </form>
                 </div>
 
             </div>
-
+           
         </>
     )
-
-  
 }
 
 export default Page

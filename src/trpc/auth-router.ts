@@ -34,6 +34,6 @@ export const authRouter = router({
            }
        })
 
-       return{success: true , sentToEmail: email}
+       return{success: true }
     })
 })

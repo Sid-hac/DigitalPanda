@@ -7,6 +7,7 @@ import { Users } from "./collections/Users";
 import dotenv from 'dotenv'
 
 
+
 dotenv.config({
     path: path.resolve(__dirname, '../.env')
 })
