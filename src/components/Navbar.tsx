@@ -6,10 +6,15 @@ import { icons } from './Icons'
 import NavItems from './NavItems'
 import { buttonVariants } from './ui/button'
 import Cart from './Cart'
+import { getServerSideUser } from '@/lib/payload-utils'
+import { cookies } from 'next/headers'
+import UserAccNav from './UserAccNav'
 
-const Navbar = () => {
 
-    const user = false;
+const Navbar = async () => {
+
+    const nextCookies = cookies()
+    const user = await getServerSideUser(nextCookies)
 
     return (
         <div className='bg-white sticky z-50 inset-x-0 top-0 h-16'>
@@ -31,41 +36,43 @@ const Navbar = () => {
                         </div>
                         <div className=' hidden lg:flex lg:justify-center lg:items-center lg:gap-4'>
 
-                            {user ? null :
+                            {user ? (null) :
 
-                                <Link href='/sign-in' className={buttonVariants({ variant: 'ghost' })}>
+                                (<Link href='/sign-in' className={buttonVariants({ variant: 'ghost' })}>
                                     Sign-in
-                                </Link>
-
+                                </Link>)
                             }
                             {user ? null :
                                 <span className='h-6 w-px bg-gray-200' aria-hidden='true' />
                             }
-                            {user ? null :
-                                <Link href='/sign-up' className={buttonVariants({ variant: 'ghost' })}>
+                            {user ? (
+                                <UserAccNav user={user}/>
+                            ) :
+                                (<Link  href='/sign-up' className={buttonVariants({ variant: 'ghost'})}>
                                     Sign-up
-                                </Link>
+                                </Link>)
                             }
-                            {user ? <span className='h-6 w-px bg-gray-200' aria-hidden='true' /> :
-                                null
+                        {user ?( <span className='h-6 w-px bg-gray-200' aria-hidden='true' />) :
+                            null
 
-                            }
-                            {user ? null :
+                        }
+                        {user ? null :
+                            (
                                 <span className='h-6 w-px bg-gray-200' aria-hidden='true' />
-
-                            }
-                            <div className=' lg:flex '>
-                               <Cart/>
-                            </div>
-
-
+                            )
+                        }
+                        <div className=' lg:flex '>
+                            <Cart />
                         </div>
 
-                    </div>
-                </MaxWidthWrapper>
 
-            </header>
-        </div>
+                    </div>
+
+                </div>
+            </MaxWidthWrapper>
+
+        </header>
+        </div >
     )
 }
 
