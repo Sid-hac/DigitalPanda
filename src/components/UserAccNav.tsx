@@ -1,11 +1,19 @@
+"use client"
+
+
+
 import { DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { DropdownMenu, DropdownMenuContent } from "./ui/dropdown-menu"
 import { Button, buttonVariants } from "./ui/button"
 import { User } from "../payload-types"
 import Link from "next/link"
+import { useAuth } from "@/hooks/use-auth"
 
 
 const UserAccNav = ({ user }: { user: User }) => {
+
+    const {signOut} = useAuth();
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild className="overflow-visible">
@@ -25,7 +33,9 @@ const UserAccNav = ({ user }: { user: User }) => {
                           Seller dashboard
                       </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuItem className="cursor-pointer" 
+                  onClick={signOut}
+                  >
                       Logout
                   </DropdownMenuItem>
             </DropdownMenuContent>
