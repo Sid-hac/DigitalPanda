@@ -50,15 +50,15 @@ export const Products: CollectionConfig = {
         ),
         required: true,
     },
-    // {
-    //     name: 'product_files',
-    //     label: 'product_file(s)',
-    //     type: 'relationship',
-    //     relationTo: 'product_files',
-    //     required: true,
-    //     hasMany: false,
-
-    // },
+    {
+        name: 'product_files',
+        label: 'product_file(s)',
+        type: 'relationship',
+        required: true,
+        relationTo: 'product_files',
+        hasMany: false,
+        
+    },
     {
         name: 'approvedForSale',
         label: 'product status',
