@@ -4,7 +4,7 @@
 
 import { DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { DropdownMenu, DropdownMenuContent } from "./ui/dropdown-menu"
-import { Button, buttonVariants } from "./ui/button"
+import { Button } from "./ui/button"
 import { User } from "../payload-types"
 import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"

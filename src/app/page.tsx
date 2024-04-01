@@ -3,6 +3,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
+import ProductReel from "@/components/ProductReel";
 
 const perks = [
   {
@@ -40,7 +41,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* TODO: list products */}
+        <ProductReel query={{ sort: 'desc', limit: 4 }} title="Brand New" href="/products" />
 
       </MaxWidthWrapper>
       <section className="border-t border-gray-200 bg-gray-50">
@@ -52,14 +53,14 @@ export default function Home() {
                   <div className="h-16 w-16 flex justify-center items-center rounded-full bg-blue-100">
                     {<perk.icon className="w-1/3 h-1/3" />}
                   </div>
-               </div>
+                </div>
                 <div className="mt-4 md:ml-4 md:mt-0  lg:ml-0 lg:mt-4">
-                   <h3 className="text-base font-medium text-gray-900">
-                      {perk.name}
-                   </h3>
-                   <p className="mt-3 text-sm text-muted-foreground">
-                      {perk.description}
-                   </p>
+                  <h3 className="text-base font-medium text-gray-900">
+                    {perk.name}
+                  </h3>
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    {perk.description}
+                  </p>
                 </div>
 
               </div>
