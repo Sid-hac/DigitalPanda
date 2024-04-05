@@ -35,8 +35,6 @@ const ProductListings = ({ product, index }: productListingProps) => {
     const validUrls = product.images.map(({image}) => 
         typeof image === 'string' ? image : image.url
     ).filter(Boolean) as string[]
-
-    console.log(validUrls);
     
 
     if (isVisible && product) {
