@@ -7,15 +7,31 @@ import emptyCart from "../../../public/hippo-empty-cart.png"
 import { PRODUCT_CATAGORIES } from "@/config"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Check, CircleCheck, CircleCheckBig, X } from "lucide-react"
+import {  CircleCheckBig, Loader2, X } from "lucide-react"
+import { trpc } from "../../trpc/client"
+import { useRouter } from "next/navigation"
+
 
 
 
 const Page = () => {
 
-
-
+    const router = useRouter();
     const { items, removeItem } = useCart()
+
+
+    const {mutate : createCheckoutSession , isLoading} = trpc.payment.createSession.useMutation({
+
+        onSuccess : ({url}) => {
+             
+             if(url) {
+                router.push(url)
+             }
+        }
+    })
+
+    
+    const productIds = items.map(({product}) => product.id)
     const cartTotal = items.reduce((total, { product }) => total + product.price, 0)
     const fee = 1
 
@@ -156,8 +172,12 @@ const Page = () => {
                         </div>
 
                         <div className="mt-6 ">
-                           <Button className="w-full" size='lg'>
+                           <Button onClick={() => createCheckoutSession({productIds})} 
+                           disabled= { items.length === 0 || isLoading }
+                           className="w-full" size='lg'>
+                            {isLoading ? (<Loader2 className="w-4 h-4 animate-spin mr-1" />) : null}
                                 Checkout
+
                            </Button>
                         </div>
 

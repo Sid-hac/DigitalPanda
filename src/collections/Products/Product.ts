@@ -1,5 +1,20 @@
+
 import { PRODUCT_CATAGORIES } from "../../config";
 import { CollectionConfig } from "payload/types";
+import { stripe } from "../../lib/stripe";
+import update from "payload/dist/collections/operations/update";
+import { Product } from "../../payload-types";
+import { BeforeChangeHook } from "payload/dist/collections/config/types";
+
+
+ const addUser : BeforeChangeHook<Product> = async ({req , data}) => {
+       
+    const {user} = req.user
+
+    return {
+       ...data, user: user?.id
+    }
+ }
 
 
 export const Products: CollectionConfig = {
@@ -9,6 +24,54 @@ export const Products: CollectionConfig = {
         useAsTitle: 'name'
     },
     access: {},
+    hooks : {
+       beforeChange : [ addUser , async(args) => {
+               
+            if(args.operation === 'create'){
+
+                const data  = args.data as Product ;
+
+                const createProduct = await stripe.products.create({
+
+                    name : data.name,
+                    default_price_data : {
+                        currency : 'INR',
+                        unit_amount : Math.round(data.price * 100)
+                    }
+                })
+
+                const updated:Product = {
+
+                    ...data,
+                    stripeId : createProduct.id,
+                    priceId : createProduct.default_price as string
+                }
+
+                return updated
+
+            } else if (args.operation === 'update'){
+
+                const data  = args.data as Product;
+
+                const updatedProduct = await stripe.products.update(
+                    data.stripeId!,{
+                    default_price : data.priceId!
+                })
+
+                const updated : Product = {
+
+                    ...data,
+                    stripeId : updatedProduct.id,
+                    priceId : updatedProduct.default_price as string
+                }
+
+                return updated
+                 
+
+            }
+        }
+       ]
+    },
     fields: [{
 
         name: 'user',
