@@ -21,7 +21,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
       collection: 'products',
       depth: 0,
       where: {
-         user: {
+         user:{
             equals: user.id
          }
       }
