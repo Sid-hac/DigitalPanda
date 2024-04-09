@@ -80,7 +80,7 @@ export const paymentRouter = router({
             })
 
             return {
-                url : stripeSession.url
+                url : stripeSession.url as string,
             }
 
         } catch (error) {

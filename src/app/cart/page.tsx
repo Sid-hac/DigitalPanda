@@ -21,10 +21,11 @@ const Page = () => {
 
 
     const {mutate : createCheckoutSession , isLoading} = trpc.payment.createSession.useMutation({
-
+             // @ts-expect-error
         onSuccess : ({url}) => {
              
              if(url) {
+            
                 router.push(url)
              }
         }
