@@ -27,7 +27,7 @@ const Page = async ({ searchParams }: PageProps) => {
     const orderId = searchParams.orderId
     const nextCookies = cookies()
 
-    const user = await getServerSideUser(nextCookies)
+    const {user} = await getServerSideUser(nextCookies)
 
     const payload = await getPayloadClient()
 

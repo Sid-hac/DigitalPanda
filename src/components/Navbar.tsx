@@ -14,7 +14,7 @@ import UserAccNav from './UserAccNav'
 const Navbar = async () => {
 
     const nextCookies = cookies()
-    const user = await getServerSideUser(nextCookies)
+    const {user} = await getServerSideUser(nextCookies)
 
     return (
         <div className='bg-white sticky z-50 inset-x-0 top-0 h-16'>
