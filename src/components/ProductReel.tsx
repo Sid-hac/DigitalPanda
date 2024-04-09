@@ -27,9 +27,6 @@ const ProductReel = (props: ProductReelProps) => {
          getNextPageParam : (lastpage) => lastpage.nextPage,
     })
 
-    console.log(queryResults);
-    
-
       const products = queryResults?.pages.flatMap(
         (page) => page.items
       )
