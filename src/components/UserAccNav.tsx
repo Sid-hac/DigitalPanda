@@ -10,7 +10,7 @@ import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 
 
-const UserAccNav = ({ user }: { user: User }) => {
+const UserAccNav = ({ user }: { user: User | null }) => {
 
     const {signOut} = useAuth();
 
@@ -24,7 +24,7 @@ const UserAccNav = ({ user }: { user: User }) => {
             <DropdownMenuContent className="bg-white w-60 " align="end">
                 <div className="flex flex-col items-center justify-start gap-2 p-2">
                     <div className="flex flex-col space-y-2 ">
-                        <p className="font-medium text-black text-sm">{user.email}</p>
+                        <p className="font-medium text-black text-sm">{user?.email}</p>
                     </div>
                 </div>
                 <DropdownMenuSeparator />

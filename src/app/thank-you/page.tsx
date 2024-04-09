@@ -27,7 +27,7 @@ const Page = async ({ searchParams }: PageProps) => {
     const orderId = searchParams.orderId
     const nextCookies = cookies()
 
-    const {user} = await getServerSideUser(nextCookies)
+    const user = await getServerSideUser(nextCookies)
 
     const payload = await getPayloadClient()
 
@@ -47,7 +47,7 @@ const Page = async ({ searchParams }: PageProps) => {
 
     const orderUserId = typeof order.user === 'string' ? order.user : order.user.id
 
-    if (orderUserId !== user?.id) {
+    if (orderUserId !== user?.user?.id) {
         return redirect(`sign-in?origin=thank-you?orderId=${order.id}`)
     }
 
