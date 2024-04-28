@@ -8,8 +8,9 @@ export const useAuth =  () => {
     const signOut = async () => {
 
         try {
-
-            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/logout`, {
+            const public_url = process.env.NEXT_PUBLIC_SERVER_URL
+            if (!public_url) throw new Error("Couldn't find public url")
+            const res = await fetch(`${public_url}/api/users/logout`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

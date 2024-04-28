@@ -9,6 +9,7 @@ import Cart from './Cart'
 import { getServerSideUser } from '@/lib/payload-utils'
 import { cookies } from 'next/headers'
 import UserAccNav from './UserAccNav'
+import MobileNav from './Mobilenav'
 
 
 
@@ -23,7 +24,7 @@ const Navbar = async () => {
                 <MaxWidthWrapper>
                     <div className='border-b border-gray-200 px-4 flex justify-between items-center'>
                         <div className='flex h-16 items-center gap-4'>
-                            {/* TODO:mobile nav */}
+                            <MobileNav/>
                             <div className='flex '>
                                 <Link href='/'>
                                     <icons.logo className='h-12 w-12' />

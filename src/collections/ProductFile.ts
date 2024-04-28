@@ -19,7 +19,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
 
    const { docs: products } = await req.payload.find({
       collection: 'products',
-      depth: 0,
+      depth: 1,
       where: {
          user:{
             equals: user.id
