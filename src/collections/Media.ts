@@ -50,7 +50,7 @@ export const Media : CollectionConfig = {
     },
     
     upload : {
-        staticURL : '/media',
+        staticURL : '/public/media',
         staticDir : 'media',
         imageSizes : [
             {

@@ -8,7 +8,7 @@ import bodyParser from "body-parser";
 import { IncomingMessage } from "http";
 import { stripeWebhookHandler } from "./webhooks";
 import nextBuild from 'next/dist/build'
-import path, { parse } from 'url'
+import path, { parse , UrlWithParsedQuery  } from 'url'
 import { PayloadRequest } from "payload/types";
 
 
@@ -68,7 +68,7 @@ const start = async () => {
         if (!request.user)
             return res.redirect('/sign-in?origin=cart')
 
-        const parsedUrl = parse(req.url , true)
+        const parsedUrl : UrlWithParsedQuery  = parse(req.url , true)
         const {query} = parsedUrl
 
         return nextApp.render(req, res, '/cart', query)
