@@ -10,7 +10,8 @@ import bodyParser from "body-parser";
 import { IncomingMessage } from "http";
 import { stripeWebhookHandler } from "./webhooks";
 import nextBuild from 'next/dist/build'
-import path, { parse , UrlWithParsedQuery } from 'url'
+import { parse , UrlWithParsedQuery } from 'url'
+import path from "path";
 import { PayloadRequest } from "payload/types";
 
 
